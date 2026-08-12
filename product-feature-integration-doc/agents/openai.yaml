@@ -1,0 +1,8 @@
+interface:
+  display_name: "产品功能整合说明"
+  short_description: "梳理现有功能与新规划冲突，生成产品和开发对接说明文档"
+  default_prompt: "使用 $product-feature-integration-doc 对照现有功能和新规划，整理功能变更与开发对接说明。"
+
+policy:
+  allow_implicit_invocation: true
+
