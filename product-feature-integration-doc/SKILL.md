@@ -1,11 +1,43 @@
 ---
 name: product-feature-integration-doc
-description: Analyze existing product specifications, checklists, integration proposals, new requirements, and product decisions; identify conflicts and classify capabilities as unchanged, modified, added, removed, or out of scope; then create or update concise Markdown feature specifications and development handoff documents. Use when Codex needs to consolidate product documents, merge an integration plan into a specification, compare current behavior with planned behavior, clarify development scope, or revise documents after product decisions.
+description: Analyze vague product delivery tasks together with existing specifications, checklists, integration proposals, new requirements, and product decisions; abstract the desired outcome, current state, gaps, deliverables, and rollout stages; identify conflicts and classify capabilities as unchanged, modified, added, removed, or out of scope; then create or update concise Markdown feature specifications, delivery plans, and development handoff documents. Use when Codex needs to turn a request such as planning optimization and product implementation into a reusable delivery workflow, consolidate product documents, merge an integration plan into a specification, compare current behavior with planned behavior, clarify development scope, or revise documents after product decisions.
 ---
 
 # Product Feature Integration Documents
 
 Create product documents that distinguish current facts from planned changes and give product, design, engineering, and QA one consistent implementation baseline.
+
+## Start with the delivery abstraction
+
+When the request is vague (for example, “plan the follow-up optimization and product rollout”), do not jump straight to a next-step list. First convert the request into five anchors:
+
+1. **Outcome** — what observable user, product, and project results should exist when the work is complete;
+2. **Current state** — what is already live and retained, live but changing, planned but missing, explicitly excluded, or unresolved;
+3. **Gap** — what is missing between the current state and the desired outcome;
+4. **Deliverables** — which artifacts close each gap;
+5. **Stages** — the order in which decisions, design, implementation, validation, release, and learning close those gaps.
+
+Scan the gap across seven dimensions: value, scope, rules, experience, capability, collaboration, and verification. Use this compact mapping:
+
+| Gap | Typical product artifact |
+|---|---|
+| Value or direction unclear | Outcome statement and success measures |
+| Scope or current behavior unclear | Scope table and unchanged/modified/added/removed/out-of-scope matrix |
+| Rules or state transitions unclear | Flow, state model, edge-case and failure rules |
+| Experience unclear | High-fidelity interactive prototype and state coverage |
+| Capability or dependency unclear | Technical boundary, compatibility matrix, and ownership table |
+| Team understanding inconsistent | Review-ready specification and development handoff |
+| Completion or launch confidence unclear | Checklist, acceptance criteria, regression baseline, metrics, and rollback conditions |
+
+Only after these anchors are clear, convert stages into concrete actions. Every stage must state: the problem it closes, the artifact or decision it produces, who must confirm it, and the evidence that marks completion.
+
+For unfamiliar domains, use the three-question abstraction loop on each concrete issue:
+
+1. What immediate problem is this issue solving?
+2. Which of the seven dimensions does it belong to?
+3. Would the same class of problem appear in another feature?
+
+Use the higher-level answer to check for sibling cases before solving only the isolated event.
 
 ## Select the deliverable
 
@@ -97,6 +129,53 @@ When the user supplies a new decision:
 - Verify heading hierarchy, numbering, cross-references, terminology, classification consistency, unresolved blanks, and absence of stale decisions.
 - Confirm that project-specific names, rules, and parameters appear only when supplied for the active project, never because they were embedded in this skill.
 
+## Delivery planning output
+
+When the user asks for a rollout or implementation plan rather than a specification, use this compact structure before producing detailed tasks:
+
+```markdown
+# [Feature] Delivery Plan
+
+## Outcome
+- User result:
+- Product result:
+- Project result:
+
+## Current state
+- Retain:
+- Modify:
+- Add:
+- Remove:
+- Out of scope:
+- Open decisions:
+
+## Gaps
+| Dimension | Gap | Impact if unresolved |
+|---|---|---|
+| Value / scope / rules / experience / capability / collaboration / verification | [Gap] | [Impact] |
+
+## Key deliverables
+| Deliverable | Gap closed | Owner | Confirmers | Definition of done |
+|---|---|---|---|---|
+
+## Stages
+| Stage | Problem closed | Output | Dependencies | Completion evidence |
+|---|---|---|---|---|
+
+## Risks and decisions
+| Question or risk | Impact | Decision owner | Due date | Result |
+|---|---|---|---|---|
+
+## Launch and learning
+- Acceptance:
+- Regression:
+- Rollout:
+- Metrics:
+- Rollback:
+```
+
+Keep this plan at the outcome-and-deliverable level unless the user asks for an execution task list. When tasks are requested, derive them from the stages and preserve the link to the artifact or decision each task closes.
+
 ## Quality checks
 
 Before delivery, confirm:
@@ -110,4 +189,3 @@ Before delivery, confirm:
 - design can identify which states and interactions require a prototype;
 - QA can identify regression baselines and changed acceptance behavior;
 - the document is concise and contains no avoidable repetition.
-
